@@ -42,7 +42,8 @@ angular.module('starter.controllers', [])
 
       //Calculate the spaces and the address without carpark name (since that is shown above).
       $scope.carparks.forEach( function(carpark){
-        carpark.lastupdate = Date.parse(carpark.lastupdate);
+        var utc = new Date(carpark.lastupdate);
+        carpark.lastupdate = new Date(utc.getTime() + utc.getTimezoneOffset()*60*1000); //Should test to make sure this works in Winter / from other countries.
         carpark.spaces = carpark.capacity - carpark.occupancy;
         carpark.description = carpark.description.split("/").slice(1).map(function(x){ return x.trim() } ).join(", ")
       });

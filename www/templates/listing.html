@@ -15,9 +15,9 @@
             <span class="carparkName">{{carpark.name}}</span>
             <span class="sq" ng-class="{p50: carpark.spaces < 50, p0: carpark.spaces < 10, p100: carpark.spaces > 50}">{{carpark.spaces}}</span>
           </ion-item>
-          <ion-item class="item-accordion" ng-show="openCarparkName == carpark.name">
-            {{carpark.description}}<BR />
-              Last Update: {{carpark.lastupdate | relativeDate}}<BR />
+          <ion-item class="carparkDetails" ng-show="openCarparkName == carpark.name">
+              {{carpark.description}}<BR />
+              Last Updated {{carpark.lastupdate | relativeDate}}<BR />
               Occupancy: {{carpark.occupancy}} / {{carpark.capacity}} ({{carpark.percentage}}% full)<BR />
               Status:	{{carpark.status}}<BR />
           </ion-item>
