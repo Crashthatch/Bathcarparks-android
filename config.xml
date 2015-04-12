@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.bathcarparksandroid503151" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>bathcarparksandroid</name>
+  <name>Bath Car Park Spaces</name>
   <description>
-        An Ionic Framework and Cordova project.
-    </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
-    </author>
+    Live Car Park counts from car parks around Bath, Somerset.
+    Data provided by Bath:Hacked.
+  </description>
+  <author email="fletcher.tom@gmail.com" href="http://bathhacked.org/">
+     Tom Fletcher
+  </author>
   <content src="index.html"/>
   <access origin="*"/>
   <preference name="webviewbounce" value="false"/>
@@ -16,4 +17,6 @@
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
+
+  <icon src="icons/icon.png" />
 </widget>
