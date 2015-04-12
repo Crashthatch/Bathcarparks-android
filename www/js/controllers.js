@@ -47,6 +47,13 @@ angular.module('starter.controllers', [])
         carpark.description = carpark.description.split("/").slice(1).map(function(x){ return x.trim() } ).join(", ")
       });
 
+      //Sort by name because the API does not keep the same order all the time.
+      $scope.carparks.sort( function(a,b){
+        if(a.name < b.name) return -1;
+        if(a.name > b.name) return 1;
+        return 0;
+      });
+
       $scope.$broadcast('scroll.refreshComplete');
     });
   };
