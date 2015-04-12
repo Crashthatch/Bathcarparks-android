@@ -10,6 +10,11 @@
       </ion-refresher>
 
     <ion-list>
+        <div class="card" ng-show="error">
+            <div class="item item-error item-text-wrap">
+                {{error}}
+            </div>
+        </div>
       <div ng-repeat="carpark in carparks">
           <ion-item ng-click="toggleDetails(carpark)">
             <span class="carparkName">{{carpark.name}}</span>

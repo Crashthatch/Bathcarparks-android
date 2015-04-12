@@ -37,6 +37,8 @@ angular.module('starter.controllers', [])
   $scope.carparks = [];
 
   $scope.refreshCarparks = function(){
+    $scope.error = '';
+
     $http.get('https://data.bathhacked.org/resource/u3w2-9yme.json').then(function(response){
       $scope.carparks = response.data;
 
@@ -55,6 +57,10 @@ angular.module('starter.controllers', [])
         return 0;
       });
 
+      $scope.$broadcast('scroll.refreshComplete');
+    }, function(err){
+      console.error(err);
+      $scope.error = "Could not load parking counts. "+err.statusText;
       $scope.$broadcast('scroll.refreshComplete');
     });
   };
