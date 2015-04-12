@@ -2,5 +2,6 @@ bower_components/
 node_modules/
 platforms/
 plugins/
+www/lib/
 .DS_Store
 npm-debug.log

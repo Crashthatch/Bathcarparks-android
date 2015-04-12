@@ -33,11 +33,35 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ListingCtrl', function($scope) {
-  $scope.carparks = array();
+.controller('ListingCtrl', function($scope, $http, $interval) {
+  $scope.carparks = [];
 
-  $http.get('https://data.bathhacked.org/resource/u3w2-9yme.json').then(function(response){
-    console.log(response);
-    $scope.carparks = response.data;
-  });
+  $scope.refreshCarparks = function(){
+    $http.get('https://data.bathhacked.org/resource/u3w2-9yme.json').then(function(response){
+      $scope.carparks = response.data;
+
+      //Calculate the spaces and the address without carpark name (since that is shown above).
+      $scope.carparks.forEach( function(carpark){
+        carpark.lastupdate = Date.parse(carpark.lastupdate);
+        carpark.spaces = carpark.capacity - carpark.occupancy;
+        carpark.description = carpark.description.split("/").slice(1).map(function(x){ return x.trim() } ).join(", ")
+      });
+
+      $scope.$broadcast('scroll.refreshComplete');
+    });
+  };
+
+  $scope.toggleDetails = function(carpark){
+    if( $scope.openCarparkName == carpark.name ){
+      $scope.openCarparkName = null;
+    }
+    else{
+      $scope.openCarparkName = carpark.name;
+    }
+  }
+
+  //Update once a minute.
+  $interval( $scope.refreshCarparks, 60000 );
+
+  $scope.refreshCarparks();
 })

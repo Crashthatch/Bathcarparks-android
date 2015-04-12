@@ -1,9 +1,27 @@
-<ion-view view-title="Playlists">
-  <ion-content>
+<ion-view view-title="Listing">
+    <div class="bar bar-header bar-stable">
+        <h1 class="title">Bath Car Park Spaces</h1>
+    </div>
+
+  <ion-content class="has-header">
+      <ion-refresher
+              pulling-text="Pull to refresh..."
+              on-refresh="refreshCarparks()">
+      </ion-refresher>
+
     <ion-list>
-      <ion-item ng-repeat="carpark in carparks" href="#/app/playlists/{{playlist.id}}">
-        {{carpark.title}} - {{carpark.spaces}} spaces
-      </ion-item>
+      <div ng-repeat="carpark in carparks">
+          <ion-item ng-click="toggleDetails(carpark)">
+            <span class="carparkName">{{carpark.name}}</span>
+            <span class="sq" ng-class="{p50: carpark.spaces < 50, p0: carpark.spaces < 10, p100: carpark.spaces > 50}">{{carpark.spaces}}</span>
+          </ion-item>
+          <ion-item class="item-accordion" ng-show="openCarparkName == carpark.name">
+            {{carpark.description}}<BR />
+              Last Update: {{carpark.lastupdate | relativeDate}}<BR />
+              Occupancy: {{carpark.occupancy}} / {{carpark.capacity}} ({{carpark.percentage}}% full)<BR />
+              Status:	{{carpark.status}}<BR />
+          </ion-item>
+      </div>
     </ion-list>
   </ion-content>
 </ion-view>

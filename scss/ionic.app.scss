@@ -21,3 +21,35 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+.p100 {
+  background-color: #ACCA57;
+}
+
+.p50 {
+  background-color: #E5AF51;
+}
+
+.p0 {
+  background-color: #DC001B;
+}
+
+.sq{
+  float:right;
+  display: inline;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  width: 3.5em;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
+.carparkName{
+  display: inline-block;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+div.bar h1.title{
+  font-weight: bold;
+}
