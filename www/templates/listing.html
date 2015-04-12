@@ -1,0 +1,9 @@
+<ion-view view-title="Playlists">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="carpark in carparks" href="#/app/playlists/{{playlist.id}}">
+        {{carpark.title}} - {{carpark.spaces}} spaces
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
