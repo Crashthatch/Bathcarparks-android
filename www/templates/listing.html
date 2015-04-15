@@ -21,9 +21,15 @@
             <span class="sq" ng-class="{p50: carpark.spaces < 50, p0: carpark.spaces < 10, p100: carpark.spaces >= 50}">{{carpark.spaces}}</span>
           </ion-item>
           <ion-item class="carparkDetails" ng-show="openCarparkName == carpark.name">
-              {{carpark.description}}<BR />
-              Last Updated {{carpark.lastupdate | relativeDate}}<BR />
-              Occupancy: {{carpark.occupancy}} / {{carpark.capacity}} ({{carpark.percentage}}% full)<BR />
+              <span class="carparkDetailsText">
+                  {{carpark.description}}<BR />
+                  Last Updated {{carpark.lastupdate | relativeDate}}<BR />
+                  Occupancy: {{carpark.occupancy}} / {{carpark.capacity}} ({{carpark.percentage}}% full)
+              </span>
+              <a href="geo:{{carpark.location.latitude}},{{carpark.location.longitude}}?q={{carpark.location.latitude}},{{carpark.location.longitude}}({{carpark.name}})">
+                  <span class="ion-location mapicon">
+                  </span>
+              </a>
           </ion-item>
       </div>
     </ion-list>

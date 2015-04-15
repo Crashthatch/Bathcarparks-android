@@ -20,9 +20,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'relativeDate'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
-  $stateProvider
+.config(function($stateProvider, $urlRouterProvider, $compileProvider) {
+  //Allow geo: without prefixing unsafe:
+  $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|tel|file|geo):/);
 
+  $stateProvider
   .state('app', {
     url: "/app",
     abstract: true,
