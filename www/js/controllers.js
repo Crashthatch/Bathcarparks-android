@@ -51,8 +51,12 @@ angular.module('starter.controllers', [])
           carpark.lastupdate = new Date();
         }
 
-        //Remove the carpark name from the first line of the address since it's already shown above.
-        carpark.description = carpark.description.split("/").slice(1).map(function(x){ return x.trim() } ).join(", ")
+
+        carpark.description = carpark.description.split("/")
+          .slice(1) //Remove the carpark name from the first line of the address since it's already shown above.
+          .map(function(x){ return x.trim() } )
+          .filter( function(x){ return (x != "CP" && x != "Bath" && x != "P+R"); })//Remove pointless address lines.
+          .join(", ")
 
         //Limit spaces displayed to 0 < spaces < capacity < 1100.
         carpark.spaces = Math.max( Math.min( carpark.capacity, carpark.capacity - carpark.occupancy, 1100), 0);
