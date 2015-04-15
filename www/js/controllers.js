@@ -46,8 +46,16 @@ angular.module('starter.controllers', [])
       $scope.carparks.forEach( function(carpark){
         var utc = new Date(carpark.lastupdate);
         carpark.lastupdate = new Date(utc.getTime() + utc.getTimezoneOffset()*60*1000); //Should test to make sure this works in Winter / from other countries.
-        carpark.spaces = carpark.capacity - carpark.occupancy;
+        //Validation. The data from the datastore can be timestamps in the future (wrong time on the council server?)
+        if( carpark.lastupdate > new Date() ){
+          carpark.lastupdate = new Date();
+        }
+
+        //Remove the carpark name from the first line of the address since it's already shown above.
         carpark.description = carpark.description.split("/").slice(1).map(function(x){ return x.trim() } ).join(", ")
+
+        //Limit spaces displayed to 0 < spaces < capacity < 1100.
+        carpark.spaces = Math.max( Math.min( carpark.capacity, carpark.capacity - carpark.occupancy, 1100), 0);
       });
 
       //Sort by name because the API does not keep the same order all the time.
