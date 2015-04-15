@@ -1,0 +1,13 @@
+Update config.xml to increment the version number.
+
+ionic build --release android
+
+While in the root dir (ie. /bathcarparksandroid).
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore C:\Users\Tom\Dropbox\android\tom-fletcher.arrowSD.release-key.keystore platforms\android\ant-build\CordovaApp-release-unsigned.apk alias_name
+
+Enter the password. This signs it in-place.
+
+Now do this to zipalign it:
+zipalign -v 4 platforms\android\ant-build\CordovaApp-release-unsigned.apk platforms\android\ant-build\BathCarParks-v0.0.2.apk
+
+You can now upload this new version to the Google Play Developers Console.
